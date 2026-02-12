@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# PDF файлы (они большие, не нужно их в Git)
+*.pdf
+!rules_*.pdf  # если хочешь хранить примеры - раскомментируй
+
+# OS
+.DS_Store
+Thumbs.db
+
+# API ключи и конфиденциальные данные
+.env
+.env.local
+.env.*.local
+config.py           # ← САМОЕ ГЛАВНОЕ! твой config.py с реальными ключами
+config_local.py
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Langfuse кэш
+.langfuse_cache/
+
+# Бинарные файлы
+*.zip
+*.tar
+*.gz
+*.rar
