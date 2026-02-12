@@ -19,9 +19,9 @@ pythonenv*
 *.swo
 *~
 
-# PDF файлы (они большие, не нужно их в Git)
+# PDF файлы
 *.pdf
-!rules_*.pdf  # если хочешь хранить примеры - раскомментируй
+!rules_*.pdf 
 
 # OS
 .DS_Store
@@ -31,7 +31,7 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
-config.py           # ← САМОЕ ГЛАВНОЕ! твой config.py с реальными ключами
+config.py 
 config_local.py
 
 # Jupyter Notebook
