@@ -9,11 +9,11 @@ env/
 .vscode/
 .idea/
 
-# PDF файлы (не храним в Git)
+# PDF файлы
 *.pdf
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Больше НЕ НУЖНО игнорить config.py - его просто нет!
+
