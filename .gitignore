@@ -1,48 +1,19 @@
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.Python
-env/
 venv/
 .venv/
-ENV/
-env.bak/
-venv.bak/
-pythonenv*
+env/
 
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
 
-# PDF файлы
+# PDF файлы (не храним в Git)
 *.pdf
-!rules_*.pdf 
 
 # OS
 .DS_Store
 Thumbs.db
 
-# API ключи и конфиденциальные данные
-.env
-.env.local
-.env.*.local
-config.py 
-config_local.py
-
-# Jupyter Notebook
-.ipynb_checkpoints
-*.ipynb
-
-# Langfuse кэш
-.langfuse_cache/
-
-# Бинарные файлы
-*.zip
-*.tar
-*.gz
-*.rar
+# Больше НЕ НУЖНО игнорить config.py - его просто нет!
