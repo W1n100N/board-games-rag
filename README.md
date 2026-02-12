@@ -1,46 +1,30 @@
 # Board Games RAG
 
-Система поиска ответов на вопросы по правилам настольных игр. 
-Загружаете PDF с правилами — задаёте вопросы — получаете ответы.
+Система поиска по правилам настольных игр с запуском через GitHub Actions.
 
----
+## 🚀 Быстрый старт
 
-## Возможности
+1. **Форкни репозиторий**
+2. **Добавь секреты** (Settings → Secrets and variables → Actions):
+   - `GOOGLE_API_KEY` - твой ключ Gemini API
+   - `LANGFUSE_PUBLIC_KEY` - (опционально)
+   - `LANGFUSE_SECRET_KEY` - (опционально)
+3. **Запусти workflow** (Actions → Run RAG System → Run workflow)
 
-- Скачивает правила с hobbyworld.ru автоматически
-- Ищет ответы по тексту правил
-- Отвечает на русском через Google Gemini
-- Показывает, из какой игры взят ответ
-- Не даёт читерить (фильтр запросов)
-
----
-
-## Поддерживаемые игры
-
-| Игра | Источник |
-|------|---------|
-| Зомбицид | hobbyworld.ru |
-| Ужас Аркхема | hobbyworld.ru |
-| Деревяшки | hobbyworld.ru |
-| Колонизаторы | hobbyworld.ru |
-| Взрывные котята | hobbyworld.ru |
-| Каркассон | hobbyworld.ru |
-| Космический контакт | hobbyworld.ru |
-
----
-
-## Быстрый старт
+## 📦 Локальный запуск
 
 ```bash
-# 1. Скачать репозиторий
+# 1. Клонируй
 git clone https://github.com/yourusername/board-games-rag.git
 cd board-games-rag
 
-# 2. Установить зависимости
+# 2. Установи зависимости
 pip install -r requirements.txt
 
-# 3. Скачать правила игр
-python download_pdfs.py
+# 3. Задай переменные окружения
+export GOOGLE_API_KEY="твой-ключ"  # Mac/Linux
+set GOOGLE_API_KEY="твой-ключ"     # Windows
 
-# 4. Запустить
+# 4. Запусти
+python download_pdfs.py
 python main.py
