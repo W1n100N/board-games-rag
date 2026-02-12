@@ -1,0 +1,84 @@
+name: Запуск RAG системы
+
+on:
+  # Ручной запуск через интерфейс GitHub
+  workflow_dispatch:
+  
+  # Автоматический запуск при пуше в main
+  push:
+    branches: [ main ]
+  
+  # Запуск по расписанию (каждое воскресенье)
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  run-rag:
+    runs-on: ubuntu-latest
+    name: Скачать PDF и запустить RAG
+    
+    steps:
+    - name: Клонировать репозиторий
+      uses: actions/checkout@v3
+    
+    - name: Установить Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Установить зависимости
+      run: |
+        pip install -r requirements.txt
+        pip install llama-index-llms-google-genai
+        pip install llama-index-embeddings-openai
+        pip install langfuse==2.8.0
+    
+    - name: Проверить наличие API ключа
+      env:
+        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      run: |
+        if [ -z "$GOOGLE_API_KEY" ]; then
+          echo "ОШИБКА: GOOGLE_API_KEY не найден в Secrets!"
+          echo "Добавь его: Settings -> Secrets and variables -> Actions"
+          exit 1
+        else
+          echo "GOOGLE_API_KEY найден"
+        fi
+    
+    - name: Скачать PDF правила
+      env:
+        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        LANGFUSE_PUBLIC_KEY: ${{ secrets.LANGFUSE_PUBLIC_KEY }}
+        LANGFUSE_SECRET_KEY: ${{ secrets.LANGFUSE_SECRET_KEY }}
+      run: |
+        echo "Скачиваем PDF файлы..."
+        python download_pdfs.py
+    
+    - name: Запустить RAG систему
+      env:
+        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        LANGFUSE_PUBLIC_KEY: ${{ secrets.LANGFUSE_PUBLIC_KEY }}
+        LANGFUSE_SECRET_KEY: ${{ secrets.LANGFUSE_SECRET_KEY }}
+        EMBEDDING_MODEL: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+        LLM_MODEL: "gemini-2.0-flash-exp"
+        MIN_REQUEST_INTERVAL: "5.0"
+        MAX_REQUESTS_PER_MINUTE: "10"
+        SIMILARITY_TOP_K: "2"
+      run: |
+        echo "Запускаем RAG систему..."
+        python main.py
+    
+    - name: Сохранить результаты
+      uses: actions/upload-artifact@v3
+      with:
+        name: rag-results
+        path: |
+          *.pdf
+          *.log
+          output.json
+        if-no-files-found: ignore
+    
+    - name: Завершение
+      run: |
+        echo "RAG система успешно выполнилась"
+        echo "Результаты можно скачать в разделе Artifacts"
