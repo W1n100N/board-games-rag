@@ -2,7 +2,7 @@
 
 Система поиска по правилам настольных игр с запуском через GitHub Actions.
 
-## 🚀 Быстрый старт
+## Быстрый старт
 
 1. **Форкни репозиторий**
 2. **Добавь секреты** (Settings → Secrets and variables → Actions):
@@ -11,7 +11,7 @@
    - `LANGFUSE_SECRET_KEY` - (опционально)
 3. **Запусти workflow** (Actions → Run RAG System → Run workflow)
 
-## 📦 Локальный запуск
+## Локальный запуск
 
 ```bash
 # 1. Клонируй
