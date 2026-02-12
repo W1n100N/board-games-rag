@@ -1,0 +1,28 @@
+# ============================================
+# НАСТРОЙКИ API - ЗАПОЛНИ СВОИМИ КЛЮЧАМИ
+# ============================================
+
+# ------------------- ОБЯЗАТЕЛЬНО -------------------
+# Google Gemini API ключ (получить: https://makersuite.google.com/app/apikey)
+GOOGLE_API_KEY = ""
+
+# ------------------- ОПЦИОНАЛЬНО -------------------
+# Langfuse для трассировки запросов (https://cloud.langfuse.com)
+# Можно оставить пустыми или с примерами - система всё равно работает
+LANGFUSE_PUBLIC_KEY = "pk-lf-22901c5d-0743-40f5-aa24-5d211ce47096"
+LANGFUSE_SECRET_KEY = "sk-lf-6dab86c9-fa51-4641-a24e-8b44aaf399f8"
+
+# ============================================
+# НАСТРОЙКИ СИСТЕМЫ (можно не менять)
+# ============================================
+
+# Модели
+EMBEDDING_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+LLM_MODEL = "gemini-2.0-flash-exp"
+
+# Rate limiting (для бесплатного API)
+MIN_REQUEST_INTERVAL = 5.0  # секунд между запросами
+MAX_REQUESTS_PER_MINUTE = 10  # максимум запросов в минуту
+
+# Поиск
+SIMILARITY_TOP_K = 2  # количество похожих документов
